@@ -8,3 +8,9 @@
   margin: 0 auto;
   padding: 0 50px;
 }
+
+@media screen and (max-width: 400px) {
+  .container {
+    padding: 0 10px;
+  }
+}
