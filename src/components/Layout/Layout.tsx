@@ -16,9 +16,11 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
+    <div className='container'>
+
     <Layout>
-      <Header style={{background: "#c6c6c6", padding: "0px 20px"}}>
-        <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider} />
+      <Header style={{background: "#fff", padding: "0px 20px"}}>
+        <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
       </Header>
       <Layout>
         <Drawer
@@ -28,15 +30,16 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
           onClose={toggleSider}
           open={isOpen}
         >
-          <Sider style={{ background: "#F0F2F3", padding: '20px 20px' }} width={200}>
+          <Sider style={{ background: "#fff", padding: '20px 20px' }} width={200}>
             Сайдбар
           </Sider>
         </Drawer>
-        <Content style={{ height: "100vh", padding: '20px 25px' }}>
+        <Content style={{ background: "#fff", height: "100vh", padding: '20px 25px' }}>
           {children}
         </Content>
       </Layout>
-      <Footer style={{background: "#b0b0b0", padding: "20px 20px"}}>Футер</Footer>
+      <Footer style={{background: "#fff", padding: "20px 20px"}}>Футер</Footer>
     </Layout>
+    </div>
   );
 };
