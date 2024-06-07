@@ -4,6 +4,7 @@ import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
 import Sider from 'antd/es/layout/Sider';
+import { BasketItem } from 'components/Basket-item/Basket-item';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,7 +23,7 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className='container'>
-      <Layout>
+      <Layout style={{ minHeight: '100vh' }}>
         <Header style={{
             display: "flex", 
             flexWrap: "wrap", 
@@ -60,11 +61,14 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             onClose={toggleBasket}
             open={isOpenBasket}
           >
-            <Sider style={{ background: "#fff", padding: '20px 20px' }} width={200}>
-              Коризна пуста
+            <Sider width={"94%"} style={{ background: "#fff", padding: '20px 10px'}}>
+              <BasketItem />
+              <BasketItem />
+              <BasketItem />
+              <BasketItem />
             </Sider>
           </Drawer>
-          <Content style={{ background: "#fff", height: "100vh", padding: '20px 25px' }}>
+          <Content style={{ background: "#fff", padding: '20px 25px' }}>
             {children}
           </Content>
         </Layout>
