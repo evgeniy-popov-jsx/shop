@@ -1,6 +1,6 @@
 import { CardItem } from 'components/Card-item/Card-item';
 
-export const CardList = () => {
+export const CardList: React.FC = () => {
   return (
     <div style={{
         display: "flex", 

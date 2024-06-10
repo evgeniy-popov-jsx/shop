@@ -1,6 +1,6 @@
 import { BasketItem } from 'components/Basket-item/Basket-item';
 
-export const BasketList = () => {
+export const BasketList: React.FC = () => {
   return (
     <div>
       <BasketItem />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 
-export const BasketItem = () => {
+export const BasketItem: React.FC = () => {
   const [count, setCount] = useState(0);
 
   const increment = () => {
