@@ -5,6 +5,7 @@ import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
 import Sider from 'antd/es/layout/Sider';
 import { BasketList } from 'components/Basket-list/Basket-list';
+import styles from './Layout.module.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,19 +23,11 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className='container'>
-      <Layout style={{ minHeight: '100vh' }}>
-        <Header style={{
-            display: "flex",
-            gap: "10px", 
-            alignItems: "center", 
-            justifyContent:"space-between", 
-            background: "#fff", 
-            padding: "0px 20px"
-          }}
-        >
-          <Typography.Title style={{margin: "0", fontSize: "32px"}}>Ларёк</Typography.Title>
-          <div style={{display: "flex", alignItems: "center", gap: "5px"}}>
+    <div className={styles.container}>
+      <Layout className={styles.layout}>
+        <Header className={styles.header}>
+          <Typography.Title>Ларёк</Typography.Title>
+          <div className={styles.btnContainer}>
             <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
             <Badge count={5} >
               <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
@@ -49,7 +42,7 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             onClose={toggleSider}
             open={isOpen}
           >
-            <Sider style={{ background: "#fff", padding: '20px 20px' }} width={200}>
+            <Sider width={"84%"} className={styles.siderFilter}>
               Фильтров нет
             </Sider>
           </Drawer>
@@ -60,15 +53,15 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             onClose={toggleBasket}
             open={isOpenBasket}
           >
-            <Sider width={"94%"} style={{ background: "#fff", padding: '20px 10px'}}>
+            <Sider width={"84%"} className={styles.siderBasket}>
               <BasketList />
             </Sider>
           </Drawer>
-          <Content style={{ background: "#fff", padding: '20px 25px' }}>
+          <Content className={styles.content}>
             {children}
           </Content>
         </Layout>
-        <Footer style={{background: "#fff", padding: "20px 20px"}}>© Организация по производству и продаже товаров</Footer>
+        <Footer className={styles.footer}>© Организация по производству и продаже товаров</Footer>
       </Layout>
     </div>
   );

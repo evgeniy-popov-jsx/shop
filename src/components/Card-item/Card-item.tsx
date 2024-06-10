@@ -1,7 +1,7 @@
 import { Card, Skeleton } from "antd";
 import Meta from 'antd/es/card/Meta';
 
-export const CardItem: React.FC = () => {
+export const CardItem = () => {
   return (
     <Card 
       hoverable

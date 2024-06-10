@@ -1,15 +1,9 @@
 import { CardItem } from 'components/Card-item/Card-item';
+import styles from './card-list.module.css';
 
 export const CardList: React.FC = () => {
   return (
-    <div style={{
-        display: "flex", 
-        alignItems:"center",
-        justifyContent: "space-between", 
-        gap:"10px", 
-        flexWrap:"wrap", 
-      }}
-    >
+    <div className={styles.container}>
       <CardItem />
       <CardItem />
       <CardItem />

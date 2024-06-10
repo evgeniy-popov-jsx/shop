@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from 'antd';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import styles from './basket-item.module.css';
 
 export const BasketItem: React.FC = () => {
   const [count, setCount] = useState(0);
@@ -13,14 +14,29 @@ export const BasketItem: React.FC = () => {
   };
 
   return (
-    <div style={{display: "flex", alignItems: "center", justifyContent:"space-around", marginBottom: "10px", gap:'5px'}}>
-      <div>Название товара</div>
-      <div style={{display: 'flex', gap: "5px"}}>
-        <Button type="default" size="small" icon={<LeftOutlined />} onClick={decrement} disabled={count === 0 ? true : false}/>
-          <div style={{width: "24px", height: "24px", display: "flex", alignItems: "center", justifyContent:"center"}}>{count}</div>
-        <Button type="default" size="small" icon={<RightOutlined />} onClick={increment}/>
+    <div className={styles.container}>
+      <p>Название товара</p>
+      <div className={styles.btnContainer}>
+        <Button 
+          type="default" 
+          size="small" 
+          icon={<LeftOutlined />} 
+          onClick={decrement} 
+          disabled={count === 0 ? true : false}
+        />
+        <div className={styles.count}>{count}</div>
+        <Button 
+          type="default" 
+          size="small" 
+          icon={<RightOutlined />} 
+          onClick={increment}
+        />
       </div>
-      <Button type="text" size="small" icon={<CloseSquareOutlined />} />
+      <Button 
+        type="text" 
+        size="small" 
+        icon={<CloseSquareOutlined />}
+      />
     </div>
   );
 };
