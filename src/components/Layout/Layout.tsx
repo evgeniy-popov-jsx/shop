@@ -25,8 +25,7 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
     <div className='container'>
       <Layout style={{ minHeight: '100vh' }}>
         <Header style={{
-            display: "flex", 
-            flexWrap: "wrap", 
+            display: "flex",
             gap: "10px", 
             alignItems: "center", 
             justifyContent:"space-between", 
@@ -34,7 +33,7 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             padding: "0px 20px"
           }}
         >
-          <Typography.Title style={{margin: "0"}}>Ларёк</Typography.Title>
+          <Typography.Title style={{margin: "0", fontSize: "32px"}}>Ларёк</Typography.Title>
           <div style={{display: "flex", alignItems: "center", gap: "5px"}}>
             <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
             <Badge count={5} >

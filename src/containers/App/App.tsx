@@ -1,10 +1,10 @@
-import { CardItem } from 'components/Card-item/Card-item';
+import { CardList } from 'components/Card-list/Card-list';
 import { LayoutPage } from 'components/Layout/Layout'
 
 function App() {
   return (
     <LayoutPage>
-      <CardItem />
+      <CardList />
     </LayoutPage>
   );
 };
