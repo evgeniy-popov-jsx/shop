@@ -6,7 +6,7 @@ export const CardItem = () => {
     <Card 
       hoverable
       style={{ width: 240 }}
-      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+      cover={<img alt="example" src="https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg" width={100} height={300}/>}
     >
       <Skeleton loading={false} active>
         <Meta
