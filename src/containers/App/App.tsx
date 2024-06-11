@@ -1,11 +1,14 @@
-import { CardList } from 'components/Card-list/Card-list';
+import { BrowserRouter } from 'react-router-dom';
 import { LayoutPage } from 'components/Layout/Layout'
+import { RouterConfig } from '../../routes/routesConfig';
 
 function App() {
   return (
-    <LayoutPage>
-      <CardList />
-    </LayoutPage>
+    <BrowserRouter>
+      <LayoutPage>
+        <RouterConfig />
+      </LayoutPage>
+    </BrowserRouter>
   );
 };
 
