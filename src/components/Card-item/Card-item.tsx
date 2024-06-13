@@ -13,7 +13,7 @@ export const CardItem: React.FC<CardItemProps> = ({item}) => {
       <Card 
         hoverable
         className={styles.card}
-        cover={<img alt="example" src={image} className={styles.img}/>}
+        cover={<img alt={title} src={image} className={styles.img}/>}
       >
         <Skeleton loading={false} active>
           <Meta

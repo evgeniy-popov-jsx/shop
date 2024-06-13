@@ -22,7 +22,7 @@ export const CardList: React.FC = () => {
     <div className={styles.container}>
       {mock.map((item: ItemProps) => {
         return (
-          <Link to={`/products/${item.id}`} key={item.id}>
+          <Link to={`/product/${item.id}`} key={item.id}>
             {item.rating.rate > 4 
               ? (
                 <Badge.Ribbon text="Bestseller">
