@@ -45,3 +45,8 @@
     padding: 0 8px;
   }
 }
+@media screen and (max-width: 335px) {
+  .header h1 {
+    display: none;
+  }
+}
