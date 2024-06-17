@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import { Badge, Button, Drawer, Layout } from "antd";
-import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Typography } from "antd";
-import Sider from 'antd/es/layout/Sider';
 import { BasketList } from 'presentation/components/Basket-list/Basket-list';
-import styles from './Layout.module.css';
+import { Styled } from './styles';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
+export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenBasket, setIsOpenBasket] = useState(false);
 
@@ -23,17 +16,17 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <Layout className={styles.layout}>
-        <Header className={styles.header}>
-          <Typography.Title>Ларёк</Typography.Title>
-          <div className={styles.btnContainer}>
+    <Styled.Container>
+      <Styled.Layout>
+        <Styled.Header>
+          <Styled.Title>Ларёк</Styled.Title>
+          <Styled.BtnContainer>
             <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
             <Badge count={5} >
               <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
             </Badge>
-          </div>
-        </Header>
+          </Styled.BtnContainer>
+        </Styled.Header>
         <Layout>
           <Drawer
             title="Фильтры"
@@ -42,9 +35,9 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             onClose={toggleSider}
             open={isOpen}
           >
-            <Sider width={"84%"} className={styles.siderFilter}>
+            <Styled.Sider width={"100%"}>
               Фильтров нет
-            </Sider>
+            </Styled.Sider>
           </Drawer>
           <Drawer
             title="Корзина"
@@ -53,16 +46,16 @@ export const LayoutPage: React.FC<LayoutProps> = ({ children }) => {
             onClose={toggleBasket}
             open={isOpenBasket}
           >
-            <Sider width={"84%"} className={styles.siderBasket}>
+            <Styled.Sider width={"100%"}>
               <BasketList />
-            </Sider>
+            </Styled.Sider>
           </Drawer>
-          <Content className={styles.content}>
+          <Styled.Content>
             {children}
-          </Content>
+          </Styled.Content>
         </Layout>
-        <Footer className={styles.footer}>© Организация по производству и продаже товаров</Footer>
-      </Layout>
-    </div>
+        <Styled.Footer>© Организация по продаже товаров</Styled.Footer>
+      </Styled.Layout>
+    </Styled.Container>
   );
 };
