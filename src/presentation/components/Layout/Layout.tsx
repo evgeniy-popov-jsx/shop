@@ -4,7 +4,7 @@ import { Content, Footer, Header } from 'antd/es/layout/layout';
 import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { Typography } from "antd";
 import Sider from 'antd/es/layout/Sider';
-import { BasketList } from 'components/Basket-list/Basket-list';
+import { BasketList } from 'presentation/components/Basket-list/Basket-list';
 import styles from './Layout.module.css';
 
 interface LayoutProps {

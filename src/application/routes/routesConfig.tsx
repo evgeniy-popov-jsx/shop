@@ -1,6 +1,6 @@
 import { useRoutes } from 'react-router-dom';
-import { CardList } from 'components/Card-list/Card-list';
-import { ProductPage } from '../containers/Product-page/Product-page';
+import { CardList } from 'presentation/components/Card-list/Card-list';
+import { ProductPage } from 'presentation/page/Product-page/Product-page';
 
 export const RouterConfig = () => {
 	const config = useRoutes([

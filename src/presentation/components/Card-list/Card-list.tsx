@@ -1,26 +1,14 @@
-import { CardItem } from 'components/Card-item/Card-item';
-import { mock } from '../../mock/mock.ts';
+import { CardItem } from 'presentation/components/Card-item/Card-item.tsx';
+import { mock } from '../../../domain/mock/mock';
 import styles from './card-list.module.css';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
-
-export interface ItemProps {
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    category: string,
-    image: string,
-    rating: {
-      rate: number,
-      count: number
-    }
-}
+import { Product } from 'domain/model/product';
 
 export const CardList: React.FC = () => {
   return (
     <div className={styles.container}>
-      {mock.map((item: ItemProps) => {
+      {mock.map((item: Product) => {
         return (
           <Link to={`/product/${item.id}`} key={item.id}>
             {item.rating.rate > 4 

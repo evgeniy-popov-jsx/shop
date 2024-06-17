@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
 import { Button } from 'antd';
-import { mock } from '../../mock/mock';
+import { mock } from 'domain/mock/mock';
 import styles from './product-page.module.css';
 
 export const ProductPage: React.FC = () => {

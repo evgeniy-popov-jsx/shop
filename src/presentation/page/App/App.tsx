@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
-import { LayoutPage } from 'components/Layout/Layout'
-import { RouterConfig } from '../../routes/routesConfig';
+import { LayoutPage } from 'presentation/components/Layout/Layout'
+import { RouterConfig } from 'application/routes/routesConfig';
 
 function App() {
   return (

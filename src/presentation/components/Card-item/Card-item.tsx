@@ -1,9 +1,10 @@
 import { Card, Skeleton, Rate } from "antd";
 import Meta from 'antd/es/card/Meta';
-import { ItemProps } from 'components/Card-list/Card-list';
 import styles from './card-item.module.css';
+import { Product } from 'domain/model/product';
+
 interface CardItemProps {
-    item: ItemProps;
+    item: Product;
 }
 
 export const CardItem: React.FC<CardItemProps> = ({item}) => {

@@ -1,4 +1,4 @@
-import { BasketItem } from 'components/Basket-item/Basket-item';
+import { BasketItem } from 'presentation/components/Basket-item/Basket-item';
 
 export const BasketList: React.FC = () => {
   return (
