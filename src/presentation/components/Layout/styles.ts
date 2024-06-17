@@ -33,7 +33,7 @@ const BtnContainer = styled.div`
   align-items: center;
   gap: 5px;
 `;
-const Content = styled.div`
+const Content = styled(ANTLayout.Content)`
   padding: 20px 25px;
   background-color: #fff;
 `;

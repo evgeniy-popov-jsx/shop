@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeftOutlined, StarFilled } from '@ant-design/icons';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { mock } from 'domain/mock/mock';
-import styles from './product-page.module.css';
+import { Styled } from './styles';
 
 export const ProductPage: React.FC = () => {
   const navigate = useNavigate();
@@ -12,26 +12,27 @@ export const ProductPage: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <Styled.Container>
       <Button 
         icon={<ArrowLeftOutlined />}
         onClick={handleBackClick} 
       />
-      <div className={styles.content}>
-        <div className={styles.imgContainer}>
-          <img src={mock[0].image} alt={mock[0].title}/>
-          <div className={styles.badget}>{mock[0].price} $</div>
-        </div>
-        <div className={styles.descContainer}>
-          <div className={styles.title}>{mock[0].title}</div>
-          <div className={styles.rating}>
-            <StarFilled className={styles.icon}/> {mock[0].rating.rate} | {mock[0].category}
-          </div>
-          <div className={styles.descriptionTitle}>About the product:</div>
-          <div className={styles.description}>{mock[0].description}</div>
+      <Styled.Content>
+        <Styled.ImgContainer>
+          <Styled.Img src={mock[0].image} alt={mock[0].title}/>
+          <Styled.Badge>{mock[0].price} $</Styled.Badge>
+        </Styled.ImgContainer>
+        <Styled.DescContainer>
+          <Styled.Title>{mock[0].title}</Styled.Title>
+          <Styled.Rating>
+            <Styled.StarFilled/> 
+            {mock[0].rating.rate} | {mock[0].category}
+          </Styled.Rating>
+          <Styled.SubTitle>About the product:</Styled.SubTitle>
+          <Styled.Description>{mock[0].description}</Styled.Description>
           <Button>Buy {mock[0].price} $</Button>
-        </div>
-      </div>
-    </div>
+        </Styled.DescContainer>
+      </Styled.Content>
+    </Styled.Container>
   );
 };
