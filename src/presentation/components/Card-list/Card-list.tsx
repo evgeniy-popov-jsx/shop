@@ -1,13 +1,13 @@
 import { CardItem } from 'presentation/components/Card-item/Card-item.tsx';
-import { mock } from '../../../domain/mock/mock';
-import styles from './card-list.module.css';
+import { mock } from 'domain/mock/mock';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import { Product } from 'domain/model/product';
+import { Styled } from './styles';
 
 export const CardList: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <Styled.Container>
       {mock.map((item: Product) => {
         return (
           <Link to={`/product/${item.id}`} key={item.id}>
@@ -21,6 +21,6 @@ export const CardList: React.FC = () => {
           </Link>
         )
       })}
-    </div>
+    </Styled.Container>
   );
 };
