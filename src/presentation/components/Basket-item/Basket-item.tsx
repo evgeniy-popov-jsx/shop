@@ -9,6 +9,7 @@ export const BasketItem: React.FC = () => {
   const increment = () => {
     setCount(count + 1);
   };
+
   const decrement = () => {
     setCount(count - 1);
   };
@@ -22,7 +23,7 @@ export const BasketItem: React.FC = () => {
           size="small" 
           icon={<LeftOutlined />} 
           onClick={decrement} 
-          disabled={count === 0 ? true : false}
+          disabled={count === 0}
         />
         <Styled.Count>{count}</Styled.Count>
         <Button 

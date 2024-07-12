@@ -7,13 +7,16 @@ const Container = styled.div`
   margin-bottom: 10px;
   gap: 5px;
 `;
+
 const BtnContainer = styled.div`
   display: flex;
   gap: 5px;
 `;
+
 const Paragraph = styled.p`
   margin: 0;
 `;
+
 const Count = styled.div`
   display: flex;
   width: 24px;
@@ -21,6 +24,7 @@ const Count = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 export const Styled = {
   Container,
   BtnContainer,

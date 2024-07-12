@@ -6,6 +6,7 @@ const Container = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
+
 const Content = styled.div`
   display: flex;
   justify-content: space-around;
@@ -16,6 +17,7 @@ const Content = styled.div`
     align-items: center;
   }
 `;
+
 const ImgContainer = styled.div`
   position: relative;
   max-width: 400px;
@@ -27,6 +29,7 @@ const ImgContainer = styled.div`
     align-items: center;
   }
 `;
+
 const Img = styled.img`
   width: 100%;
   height: auto;
@@ -38,6 +41,7 @@ const Img = styled.img`
     height: auto;
   }
 `;
+
 const DescContainer = styled.div`
   flex-grow: 1;
   max-width: 500px;
@@ -47,6 +51,7 @@ const DescContainer = styled.div`
     text-align: center;
   }
 `;
+
 const Badge = styled.div`
   position: absolute;
   top: 10px;
@@ -57,6 +62,7 @@ const Badge = styled.div`
   background-color: rgb(242, 151, 31);
   font-weight: 600;
 `;
+
 const Title = styled.div`
   margin-bottom: 10px;
   font-size: 32px;
@@ -66,6 +72,7 @@ const Title = styled.div`
     font-size: 24px;
   }
 `;
+
 const SubTitle = styled.div`
   padding: 5px 0;
   margin-bottom: 10px;
@@ -77,17 +84,21 @@ const SubTitle = styled.div`
     font-size: 20px;
   }
 `;
+
 const Description = styled.div`
   margin-bottom: 20px;
 `;
+
 const Rating = styled.div`
   color: gray;
   font-weight: 600;
   margin-bottom: 30px;
 `;
+
 const StarFilled = styled(ANTStarFilled)`
   color: rgb(255, 166, 0);
 `;
+
 export const Styled = {
   Container,
   ImgContainer,

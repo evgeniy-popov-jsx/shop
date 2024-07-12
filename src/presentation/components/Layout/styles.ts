@@ -10,9 +10,11 @@ const Container = styled.div`
     padding: 0 8px;
   }
 `;
+
 const Layout = styled(ANTLayout)`
   min-height: 100vh;
 `;
+
 const Header = styled(ANTLayout.Header)`
   display: flex;
   gap: 10px;
@@ -21,6 +23,7 @@ const Header = styled(ANTLayout.Header)`
   padding: 0px 20px;
   background: #fff;
 `;
+
 const Title = styled.h1`
   margin: 0;
 
@@ -28,23 +31,28 @@ const Title = styled.h1`
     display: none;
   }
 `;
+
 const BtnContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
 `;
+
 const Content = styled(ANTLayout.Content)`
   padding: 20px 25px;
   background-color: #fff;
 `;
+
 const Sider = styled(ANTLayout.Sider)`
   padding: 0;
   background-color: #fff;
 `;
+
 const Footer = styled(ANTLayout.Footer)`
   padding: 20px;
   background-color: #fff;
 `;
+
 export const Styled = {
   Container,
   Layout,
