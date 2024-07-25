@@ -29,6 +29,7 @@ class BasketStore {
       itemInBasket.count = (itemInBasket.count ?? 0) + 1;
     }
   };
+  
   decrementProduct = (itemId: number) => {
     const itemInBasket  = this.basket.find(basketItem => basketItem.id === itemId);
 
