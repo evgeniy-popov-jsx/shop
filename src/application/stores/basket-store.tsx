@@ -41,6 +41,10 @@ class BasketStore {
       }
     }
   };
+
+  getTotalCount = (): number => {
+    return this.basket.reduce((total, item) => total + (item.count ?? 0), 0);
+  };
 }
 
 export default new BasketStore;

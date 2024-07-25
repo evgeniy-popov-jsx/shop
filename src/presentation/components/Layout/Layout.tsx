@@ -3,8 +3,11 @@ import { Badge, Button, Drawer, Layout } from "antd";
 import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { BasketList } from 'presentation/components/Basket-list/Basket-list';
 import { Styled } from './styles';
+import { observer } from 'mobx-react-lite';
+import basketStore from 'application/stores/basket-store';
 
-export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children }) => {
+export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ children }) => {
+  const { getTotalCount } = basketStore;
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenBasket, setIsOpenBasket] = useState(false);
 
@@ -22,7 +25,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children 
           <Styled.Title>Ларёк</Styled.Title>
           <Styled.BtnContainer>
             <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
-            <Badge count={5} >
+            <Badge count={getTotalCount()} >
               <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
             </Badge>
           </Styled.BtnContainer>
@@ -58,4 +61,4 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children 
       </Styled.Layout>
     </Styled.Container>
   );
-};
+});
