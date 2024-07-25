@@ -8,7 +8,7 @@ export const BasketList: React.FC = observer(() => {
   return (
     <div>
       {basket.map(item => 
-        <BasketItem item={item}/>
+        <BasketItem item={item} key={item.id}/>
       )}
     </div>
   );

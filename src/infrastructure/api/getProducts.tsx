@@ -6,3 +6,7 @@ export const getProducts = async ( url: string ): Promise<Product[]> => {
       return response.json();
     });
 };
+
+export const getProduct = async (url: string): Promise<Product> => {
+  return fetch(url).then(response => response.json());
+};
