@@ -1,21 +1,17 @@
 import { Product } from 'domain/model/product';
 import { getProducts } from 'infrastructure/api/getProducts';
 import { makeAutoObservable } from 'mobx';
+import { IPromiseBasedObservable, fromPromise } from 'mobx-utils';
 
 class ProductsStore {
-  products: Product[] = [];
+  products?: IPromiseBasedObservable<Product[]>;
 
   constructor () {
     makeAutoObservable(this);
   };
 
-  getProductsAction = async () => {
-    try {
-      const res = await getProducts('https://fakestoreapi.com/products');
-      this.products = res;
-    } catch {
-      console.log('ошибка')
-    }
+  getProductsAction = () => {
+    this.products = fromPromise(getProducts('https://fakestoreapi.com/products'))
   };
 
 };

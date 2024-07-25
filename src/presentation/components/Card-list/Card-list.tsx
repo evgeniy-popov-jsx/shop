@@ -1,5 +1,4 @@
 import { CardItem } from 'presentation/components/Card-item/Card-item.tsx';
-import { mock } from 'domain/mock/mock';
 import { Link } from 'react-router-dom';
 import { Badge } from 'antd';
 import { Product } from 'domain/model/product';
@@ -10,15 +9,23 @@ import productsStore from 'application/stores/products-store';
 import { useEffect } from 'react';
 
 export const CardList: React.FC = observer(() => {
-  const { getProductsAction } = productsStore;
+  const { getProductsAction, products } = productsStore;
 
   useEffect(()=>{
     getProductsAction()
   },[])
 
+  if (products?.state === 'pending') {
+    return <div>Загрузка...</div>
+  };
+  
+  if (products?.state === 'rejected') {
+    return <div>Ошибка</div>
+  };
+
   return (
     <Styled.Container>
-      {mock.map((item: Product) => {
+      {products?.value.map((item: Product) => {
         return (
           <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
             {item.rating.rate > 4 
