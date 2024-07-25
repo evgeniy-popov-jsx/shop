@@ -3,9 +3,12 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { mock } from 'domain/mock/mock';
 import { Styled } from './styles';
+import { observer } from 'mobx-react-lite';
+import basketStore from 'application/stores/basket-store';
 
-export const ProductPage: React.FC = () => {
+export const ProductPage: React.FC = observer(() => {
   const navigate = useNavigate();
+  const { addBusket } = basketStore;
 
   const product = mock[0];
 
@@ -32,9 +35,9 @@ export const ProductPage: React.FC = () => {
           </Styled.Rating>
           <Styled.SubTitle>About the product:</Styled.SubTitle>
           <Styled.Description>{product.description}</Styled.Description>
-          <Button>Buy {product.price} $</Button>
+          <Button onClick={()=>addBusket(product)}>Buy {product.price} $</Button>
         </Styled.DescContainer>
       </Styled.Content>
     </Styled.Container>
   );
-};
+});

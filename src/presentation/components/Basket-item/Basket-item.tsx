@@ -10,8 +10,8 @@ interface ItemProp {
 
 export const BasketItem: React.FC<ItemProp> = ({ item }) => {
   const [count, setCount] = useState(0);
-  
-  const {} = item;
+
+  const { title } = item;
 
   const increment = () => setCount(count + 1);
 
@@ -19,7 +19,7 @@ export const BasketItem: React.FC<ItemProp> = ({ item }) => {
   
   return (
     <Styled.Container>
-      <Styled.Paragraph>Название товара</Styled.Paragraph>
+      <Styled.Paragraph>{title}</Styled.Paragraph>
       <Styled.BtnContainer>
         <Button 
           type="default" 
