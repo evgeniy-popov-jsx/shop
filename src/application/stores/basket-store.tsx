@@ -3,14 +3,15 @@ import { Product } from 'domain/model/product';
 
 class BasketStore {
   basket: Product[] = [];
-  
+  totalPrice: number = 0;
+
   constructor () {
     makeAutoObservable(this);
   }
 
   addBusket = (item: Product) => {
     const itemInBasket  = this.basket.find(basketItem => basketItem.id === item.id);
-
+    
     if (itemInBasket ) {
       itemInBasket.count = (itemInBasket.count ?? 0) + 1;
     } else {
@@ -45,6 +46,11 @@ class BasketStore {
   getTotalCount = (): number => {
     return this.basket.reduce((total, item) => total + (item.count ?? 0), 0);
   };
+
+  getTotalPrice = (): number => {
+    return this.basket.reduce((total, item) => total + (item.price * (item.count ?? 1)), 0);
+  };
+
 }
 
 export default new BasketStore;
