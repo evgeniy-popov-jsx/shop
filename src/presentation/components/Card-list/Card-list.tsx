@@ -5,8 +5,17 @@ import { Badge } from 'antd';
 import { Product } from 'domain/model/product';
 import { ROUTES } from 'application/routes/routes';
 import { Styled } from './styles';
+import { observer } from 'mobx-react-lite';
+import productsStore from 'application/stores/products-store';
+import { useEffect } from 'react';
 
-export const CardList: React.FC = () => {
+export const CardList: React.FC = observer(() => {
+  const { getProductsAction } = productsStore;
+
+  useEffect(()=>{
+    getProductsAction()
+  },[])
+
   return (
     <Styled.Container>
       {mock.map((item: Product) => {
@@ -25,4 +34,4 @@ export const CardList: React.FC = () => {
       })}
     </Styled.Container>
   );
-};
+});

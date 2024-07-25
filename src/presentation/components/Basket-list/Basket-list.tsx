@@ -1,9 +1,9 @@
-import basketStore from 'application/stores/basket-store';
+import BasketStore from 'application/stores/basket-store';
 import { observer } from 'mobx-react-lite';
 import { BasketItem } from 'presentation/components/Basket-item/Basket-item';
 
 export const BasketList: React.FC = observer(() => {
-  const { basket } = basketStore;
+  const { basket } = BasketStore;
 
   return (
     <div>

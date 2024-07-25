@@ -3,14 +3,14 @@ import { Styled } from './styles';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Product } from 'domain/model/product';
 import { observer } from 'mobx-react-lite';
-import basketStore from 'application/stores/basket-store';
+import BasketStore from 'application/stores/basket-store';
 
 interface ItemProp {
   item: Product
 }
 
 export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
-  const { removeBusket, incrementProduct, decrementProduct } = basketStore;
+  const { removeBusket, incrementProduct, decrementProduct } = BasketStore;
   const { title, count } = item;
 
   return (
