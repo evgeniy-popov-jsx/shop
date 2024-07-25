@@ -25,20 +25,23 @@ export const CardList: React.FC = observer(() => {
 
   return (
     <Styled.Container>
-      {products?.value.map((item: Product) => {
-        return (
-          <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
-            {item.rating.rate > 4 
-              ? (
-                <Badge.Ribbon text="Bestseller">
-                  <CardItem item={item} />
-                </Badge.Ribbon>
-              )
-              : <CardItem item={item} />
-            }
-          </Link>
-        )
-      })}
+      <Styled.Products>
+        {products?.value.map((item: Product) => {
+          return (
+            <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
+              {item.rating.rate > 4 
+                ? (
+                  <Badge.Ribbon text="Bestseller">
+                    <CardItem item={item} />
+                  </Badge.Ribbon>
+                )
+                : <CardItem item={item} />
+              }
+            </Link>
+          )
+        })}
+      </Styled.Products>
+      <Styled.UploadButton type="primary">Еще</Styled.UploadButton>
     </Styled.Container>
   );
 });

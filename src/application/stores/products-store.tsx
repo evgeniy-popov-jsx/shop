@@ -5,13 +5,14 @@ import { IPromiseBasedObservable, fromPromise } from 'mobx-utils';
 
 class ProductsStore {
   products?: IPromiseBasedObservable<Product[]>;
+  limit: number = 5;
 
   constructor () {
     makeAutoObservable(this);
   };
 
   getProductsAction = () => {
-    this.products = fromPromise(getProducts('https://fakestoreapi.com/products'))
+    this.products = fromPromise(getProducts(`https://fakestoreapi.com/products?limit=${this.limit}`))
   };
 
 };
