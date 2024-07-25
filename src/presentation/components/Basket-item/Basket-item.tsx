@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Button } from 'antd';
 import { Styled } from './styles';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
@@ -11,15 +10,9 @@ interface ItemProp {
 }
 
 export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
-  const { removeBusket } = basketStore;
-  const [count, setCount] = useState(0);
+  const { removeBusket, incrementProduct, decrementProduct } = basketStore;
+  const { title, count } = item;
 
-  const { title } = item;
-
-  const increment = () => setCount(count + 1);
-
-  const decrement = () => setCount(count - 1);
-  
   return (
     <Styled.Container>
       <Styled.Paragraph>{title}</Styled.Paragraph>
@@ -28,7 +21,7 @@ export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
           type="default" 
           size="small" 
           icon={<LeftOutlined />} 
-          onClick={decrement} 
+          onClick={()=>decrementProduct(item.id)} 
           disabled={count === 0}
         />
         <Styled.Count>{count}</Styled.Count>
@@ -36,7 +29,7 @@ export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
           type="default" 
           size="small" 
           icon={<RightOutlined />} 
-          onClick={increment}
+          onClick={()=>incrementProduct(item.id)}
         />
       </Styled.BtnContainer>
       <Button 

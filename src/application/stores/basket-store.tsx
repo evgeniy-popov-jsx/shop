@@ -12,7 +12,7 @@ class BasketStore {
     const itemInBasket  = this.basket.find(basketItem => basketItem.id === item.id);
 
     if (itemInBasket ) {
-      itemInBasket.count = (itemInBasket.count ?? 0);
+      itemInBasket.count = (itemInBasket.count ?? 0) + 1;
     } else {
       this.basket.push({ ...item, count: 1 });
     }
@@ -29,12 +29,16 @@ class BasketStore {
       itemInBasket.count = (itemInBasket.count ?? 0) + 1;
     }
   };
-  
-  decrementProduct = (itemId: number) => {
-    const itemInBasket  = this.basket.find(basketItem => basketItem.id === itemId);
 
-    if(itemInBasket) {
-      itemInBasket.count = (itemInBasket.count ?? 0) - 1;
+  decrementProduct = (itemId: number) => {
+    const itemInBasket = this.basket.find(basketItem => basketItem.id === itemId);
+
+    if (itemInBasket) {
+      itemInBasket.count = (itemInBasket.count ?? 1) - 1;
+
+    if (itemInBasket.count <= 0) {
+        this.removeBusket(itemId);
+      }
     }
   };
 }
