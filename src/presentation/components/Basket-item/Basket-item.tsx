@@ -2,9 +2,16 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import { Styled } from './styles';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { Product } from 'domain/model/product';
 
-export const BasketItem: React.FC = () => {
+interface ItemProp {
+  item: Product
+}
+
+export const BasketItem: React.FC<ItemProp> = ({ item }) => {
   const [count, setCount] = useState(0);
+  
+  const {} = item;
 
   const increment = () => setCount(count + 1);
 
