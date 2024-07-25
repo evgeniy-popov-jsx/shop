@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 10px;
   gap: 5px;
 `;
@@ -15,6 +15,7 @@ const BtnContainer = styled.div`
 
 const Paragraph = styled.p`
   margin: 0;
+  min-width: 222px;
 `;
 
 const Count = styled.div`

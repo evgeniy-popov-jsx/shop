@@ -47,8 +47,9 @@ class BasketStore {
     return this.basket.reduce((total, item) => total + (item.count ?? 0), 0);
   };
 
-  getTotalPrice = (): number => {
-    return this.basket.reduce((total, item) => total + (item.price * (item.count ?? 1)), 0);
+  getTotalPrice = (): string => {
+    const totalPrice = this.basket.reduce((total, item) => total + (item.price * (item.count ?? 1)), 0);
+    return totalPrice.toFixed(2);
   };
 
 }

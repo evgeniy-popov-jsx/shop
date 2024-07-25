@@ -7,14 +7,16 @@ export const BasketList: React.FC = observer(() => {
   const { basket, getTotalPrice } = BasketStore;
 
   return (
-    <div>
-      {basket.map(item => 
-        <BasketItem item={item} key={item.id}/>
-      )}
+    <Styled.Basket>
+      <Styled.Items>
+        {basket.map(item => 
+          <BasketItem item={item} key={item.id}/>
+        )}
+      </Styled.Items>
       {basket.length === 0 
         ? <>Корзина пуста</>
         : <Styled.Price>Total: {getTotalPrice()}$</Styled.Price>
       }
-    </div>
+    </Styled.Basket>
   );
 });
