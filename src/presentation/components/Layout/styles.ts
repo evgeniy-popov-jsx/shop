@@ -61,5 +61,5 @@ export const Styled = {
   BtnContainer,
   Content,
   Sider,
-  Footer,
+  Footer
 };

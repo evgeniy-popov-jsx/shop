@@ -9,14 +9,14 @@ import productsStore from 'application/stores/products-store';
 import { useEffect } from 'react';
 
 export const CardList: React.FC = observer(() => {
-  const { getProductsAction, products } = productsStore;
+  const { getProductsAction, products, uploadProducts, limit } = productsStore;
 
   useEffect(()=>{
     getProductsAction()
   },[])
 
   if (products?.state === 'pending') {
-    return <div>Загрузка...</div>
+    return <Styled.Loader />;
   };
   
   if (products?.state === 'rejected') {
@@ -41,7 +41,7 @@ export const CardList: React.FC = observer(() => {
           )
         })}
       </Styled.Products>
-      <Styled.UploadButton type="primary">Еще</Styled.UploadButton>
+      <Styled.UploadButton type="primary" onClick={()=>uploadProducts()} disabled={ limit >= 15} >Еще</Styled.UploadButton>
     </Styled.Container>
   );
 });

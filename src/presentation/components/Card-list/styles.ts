@@ -1,14 +1,15 @@
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 `;
 const Products = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
@@ -22,8 +23,15 @@ const UploadButton = styled(Button)`
   width: 200px;
 `;
 
+const Loader = styled(Spin)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
 export const Styled = {
   Container,
   Products,
-  UploadButton
+  UploadButton,
+  Loader
 };

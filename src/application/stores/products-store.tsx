@@ -15,6 +15,11 @@ class ProductsStore {
     this.products = fromPromise(getProducts(`https://fakestoreapi.com/products?limit=${this.limit}`))
   };
 
+  uploadProducts = () => {
+    this.limit += 5;
+    this.products = fromPromise(getProducts(`https://fakestoreapi.com/products?limit=${this.limit}`))
+  };
+
 };
 
 export default new ProductsStore;
