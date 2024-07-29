@@ -8,15 +8,10 @@ import { Styled } from './styles';
 import productsStore from 'application/stores/productsStore';
 
 export const CardList = observer(() => {
-  const {
-    getProducts,
-    isProductsFetching,
-    products,
-    isLimitReached,
-  } = productsStore;
+  const {products, isLimitReached, isProductsFetching } = productsStore;
 
   useEffect(() => {
-    getProducts();
+    productsStore.getProducts();
   }, []);
 
   if (isProductsFetching && products.length === 0) {
@@ -43,12 +38,12 @@ export const CardList = observer(() => {
       </Styled.Products>
       <Styled.UploadButton
         type="primary"
+        icon={`Еще`}
         onClick={productsStore.fetchNext}
         loading={isProductsFetching}
         disabled={isLimitReached}
-      >
-        Еще
-      </Styled.UploadButton>
+      />
+
     </Styled.Container>
   );
 });

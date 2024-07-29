@@ -20,7 +20,7 @@ const Products = styled.div`
 `;
 
 const UploadButton = styled(Button)`
-  width: 200px;
+  width: 200px !important;
 `;
 
 const Loader = styled(Spin)`
