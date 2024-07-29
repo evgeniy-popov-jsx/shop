@@ -36,6 +36,11 @@ class BasketStore {
     return Object.values(this.basket);
   }
 
+  @computed
+  hasProduct(itemId: number): boolean {
+    return itemId in this.basket;
+  }
+  
   @action
   addProduct(item: Product) {
     this.basket = {

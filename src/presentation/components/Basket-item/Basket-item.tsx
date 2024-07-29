@@ -1,9 +1,10 @@
 import { Button } from 'antd';
 import { Styled } from './styles';
-import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { CloseSquareOutlined } from '@ant-design/icons';
 import { Product } from 'domain/model/product';
 import { observer } from 'mobx-react-lite';
 import basketStore from 'application/stores/basketStore';
+import { Counter } from '../Counter/Counter';
 
 interface ItemProp {
   item: Product
@@ -16,22 +17,11 @@ export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
   return (
     <Styled.Container>
       <Styled.Paragraph>{title}</Styled.Paragraph>
-      <Styled.BtnContainer>
-        <Button 
-          type="default" 
-          size="small" 
-          icon={<LeftOutlined />} 
-          onClick={()=>basketStore.decrementProduct(item.id)} 
-          disabled={basketStore.TotalCount === 0}
-        />
-        <Styled.Count>{basket[item.id].count}</Styled.Count>
-        <Button 
-          type="default" 
-          size="small" 
-          icon={<RightOutlined />} 
-          onClick={()=>basketStore.incrementProduct(item.id)}
-        />
-      </Styled.BtnContainer>
+      <Counter 
+        decrement={()=>basketStore.decrementProduct(item.id)} 
+        increment={()=>basketStore.incrementProduct(item.id)} 
+        value={basket[item.id].count}
+      />
       <Button 
         type="text" 
         size="small" 

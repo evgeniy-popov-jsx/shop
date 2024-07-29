@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { Styled } from './styles';
+import { Counter } from 'presentation/components/Counter/Counter';
 import { observer } from 'mobx-react-lite';
-import { useEffect } from 'react';
+import { Styled } from './styles';
 import productStore from 'application/stores/productStore';
 import basketStore from 'application/stores/basketStore';
 
@@ -49,7 +50,15 @@ export const ProductPage: React.FC = observer(() => {
           </Styled.Rating>
           <Styled.SubTitle>About the product:</Styled.SubTitle>
           <Styled.Description>{product.description}</Styled.Description>
-          <Button onClick={()=>basketStore.addProduct(product)}>Buy {product.price} $</Button>
+          {basketStore.hasProduct(product.id) ? (
+            <Counter 
+              decrement={() => basketStore.decrementProduct(product.id)} 
+              increment={() => basketStore.incrementProduct(product.id)} 
+              value={basketStore.basket[product.id]?.count || 0} 
+            />
+          ) : (
+            <Button onClick={()=>basketStore.addProduct(product)}>Buy {product.price} $</Button>
+          )}
         </Styled.DescContainer>
       </Styled.Content>
     </Styled.Container>
