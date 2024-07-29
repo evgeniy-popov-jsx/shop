@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  gap: 10px;
 `;
+
 const Products = styled.div`
   display: flex;
   align-items: center;
@@ -21,6 +21,7 @@ const Products = styled.div`
 
 const UploadButton = styled(Button)`
   width: 200px !important;
+  margin: 0 auto;
 `;
 
 const Loader = styled(Spin)`

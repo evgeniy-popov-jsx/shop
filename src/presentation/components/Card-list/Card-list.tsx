@@ -8,7 +8,11 @@ import { Styled } from './styles';
 import productsStore from 'application/stores/productsStore';
 
 export const CardList = observer(() => {
-  const {products, isLimitReached, isProductsFetching } = productsStore;
+  const { 
+    products,
+    isLimitReached,
+    isProductsFetching 
+  } = productsStore;
 
   useEffect(() => {
     productsStore.getProducts();
@@ -21,7 +25,7 @@ export const CardList = observer(() => {
   return (
     <Styled.Container>
       <Styled.Products>
-        {products?.map((item) => {
+        {products.map((item) => {
           return (
             <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
               {item.rating.rate > 4 
@@ -38,12 +42,11 @@ export const CardList = observer(() => {
       </Styled.Products>
       <Styled.UploadButton
         type="primary"
-        icon={`Еще`}
+        icon={<p>Еще</p>}
         onClick={productsStore.fetchNext}
         loading={isProductsFetching}
         disabled={isLimitReached}
       />
-
     </Styled.Container>
   );
 });
