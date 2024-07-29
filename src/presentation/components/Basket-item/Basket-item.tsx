@@ -3,15 +3,15 @@ import { Styled } from './styles';
 import { CloseSquareOutlined, LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { Product } from 'domain/model/product';
 import { observer } from 'mobx-react-lite';
-import BasketStore from 'application/stores/basket-store';
+import basketStore from 'application/stores/basketStore';
 
 interface ItemProp {
   item: Product
 }
 
 export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
-  const { removeBusket, incrementProduct, decrementProduct } = BasketStore;
-  const { title, count } = item;
+  const { basket } = basketStore;
+  const { title } = item;
 
   return (
     <Styled.Container>
@@ -21,22 +21,22 @@ export const BasketItem: React.FC<ItemProp> = observer(({ item }) => {
           type="default" 
           size="small" 
           icon={<LeftOutlined />} 
-          onClick={()=>decrementProduct(item.id)} 
-          disabled={count === 0}
+          onClick={()=>basketStore.decrementProduct(item.id)} 
+          disabled={basketStore.TotalCount === 0}
         />
-        <Styled.Count>{count}</Styled.Count>
+        <Styled.Count>{basket[item.id].count}</Styled.Count>
         <Button 
           type="default" 
           size="small" 
           icon={<RightOutlined />} 
-          onClick={()=>incrementProduct(item.id)}
+          onClick={()=>basketStore.incrementProduct(item.id)}
         />
       </Styled.BtnContainer>
       <Button 
         type="text" 
         size="small" 
         icon={<CloseSquareOutlined />}
-        onClick={()=>removeBusket(item.id)}
+        onClick={()=>basketStore.removeProduct(item.id)}
       />
     </Styled.Container>
   );

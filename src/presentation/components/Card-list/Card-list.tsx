@@ -1,32 +1,32 @@
-import { CardItem } from 'presentation/components/Card-item/Card-item.tsx';
-import { Link } from 'react-router-dom';
-import { Badge } from 'antd';
-import { Product } from 'domain/model/product';
-import { ROUTES } from 'application/routes/routes';
-import { Styled } from './styles';
-import { observer } from 'mobx-react-lite';
-import productsStore from 'application/stores/products-store';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { ROUTES } from 'application/routes/routes';
+import { Badge } from 'antd';
+import { CardItem } from 'presentation/components/Card-item/Card-item.tsx';
+import { Styled } from './styles';
+import productsStore from 'application/stores/productsStore';
 
-export const CardList: React.FC = observer(() => {
-  const { getProductsAction, products, uploadProducts, limit } = productsStore;
+export const CardList = observer(() => {
+  const {
+    getProducts,
+    isProductsFetching,
+    products,
+    isLimitReached,
+  } = productsStore;
 
-  useEffect(()=>{
-    getProductsAction()
-  },[])
+  useEffect(() => {
+    getProducts();
+  }, []);
 
-  if (products?.state === 'pending') {
+  if (isProductsFetching && products.length === 0) {
     return <Styled.Loader />;
-  };
-  
-  if (products?.state === 'rejected') {
-    return <div>Ошибка</div>
-  };
+  }
 
   return (
     <Styled.Container>
       <Styled.Products>
-        {products?.value.map((item: Product) => {
+        {products?.map((item) => {
           return (
             <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
               {item.rating.rate > 4 
@@ -41,7 +41,14 @@ export const CardList: React.FC = observer(() => {
           )
         })}
       </Styled.Products>
-      <Styled.UploadButton type="primary" onClick={()=>uploadProducts()} disabled={ limit >= 15} >Еще</Styled.UploadButton>
+      <Styled.UploadButton
+        type="primary"
+        onClick={productsStore.fetchNext}
+        loading={isProductsFetching}
+        disabled={isLimitReached}
+      >
+        Еще
+      </Styled.UploadButton>
     </Styled.Container>
   );
 });

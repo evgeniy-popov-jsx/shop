@@ -3,19 +3,18 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { Styled } from './styles';
 import { observer } from 'mobx-react-lite';
-import basketStore from 'application/stores/basket-store';
-import productsStore from 'application/stores/products-store';
 import { useEffect } from 'react';
+import productStore from 'application/stores/productStore';
+import basketStore from 'application/stores/basketStore';
 
 export const ProductPage: React.FC = observer(() => {
-  const  { id }  = useParams();
   const navigate = useNavigate();
-  const { addBusket } = basketStore;
-  const { getProductAction, product } = productsStore;
+  const  { id }  = useParams();
+  const { product, isLoading } = productStore;
 
   useEffect(()=>{
-    if (id){
-      return getProductAction(id);
+    if (id) {
+      productStore.getProduct(id);
     }
   }, []);
 
@@ -23,17 +22,13 @@ export const ProductPage: React.FC = observer(() => {
     navigate(-1)
   };
 
-  if (!product) {
+  if (isLoading) { 
     return <Styled.Loader />;
   }
-
-  if (product?.state === 'pending') {
-    return <Styled.Loader />;
-  };
   
-  if (product?.state === 'rejected') {
-    return <div>Ошибка</div>
-  };
+  if (!product) { 
+    return <Styled.Loader />;
+  }
 
   return (
     <Styled.Container>
@@ -43,18 +38,18 @@ export const ProductPage: React.FC = observer(() => {
       />
       <Styled.Content>
         <Styled.ImgContainer>
-          <Styled.Img src={product.value.image} alt={product.value.title}/>
-          <Styled.Badge>{product.value.price} $</Styled.Badge>
+          <Styled.Img src={product.image} alt={product.title}/>
+          <Styled.Badge>{product.price} $</Styled.Badge>
         </Styled.ImgContainer>
         <Styled.DescContainer>
-          <Styled.Title>{product.value.title}</Styled.Title>
+          <Styled.Title>{product.title}</Styled.Title>
           <Styled.Rating>
             <Styled.StarFilled/> 
-            {product.value.rating.rate} | {product.value.category}
+            {product.rating.rate} | {product.category}
           </Styled.Rating>
           <Styled.SubTitle>About the product:</Styled.SubTitle>
-          <Styled.Description>{product.value.description}</Styled.Description>
-          <Button onClick={()=>addBusket(product.value)}>Buy {product.value.price} $</Button>
+          <Styled.Description>{product.description}</Styled.Description>
+          <Button onClick={()=>basketStore.addProduct(product)}>Buy {product.price} $</Button>
         </Styled.DescContainer>
       </Styled.Content>
     </Styled.Container>
