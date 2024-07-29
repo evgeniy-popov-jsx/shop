@@ -8,10 +8,11 @@ import { Styled } from './styles';
 import productStore from 'application/stores/productStore';
 import basketStore from 'application/stores/basketStore';
 
-export const ProductPage: React.FC = observer(() => {
+export const Product: React.FC = observer(() => {
   const navigate = useNavigate();
   const  { id }  = useParams();
   const { product, isLoading } = productStore;
+  const { basket } = basketStore;
 
   useEffect(()=>{
     if (id) {
@@ -50,7 +51,7 @@ export const ProductPage: React.FC = observer(() => {
           </Styled.Rating>
           <Styled.SubTitle>About the product:</Styled.SubTitle>
           <Styled.Description>{product.description}</Styled.Description>
-          {basketStore.hasProduct(product.id) ? (
+          {basket[product.id] !== undefined ? (
             <Counter 
               decrement={() => basketStore.decrementProduct(product.id)} 
               increment={() => basketStore.incrementProduct(product.id)} 

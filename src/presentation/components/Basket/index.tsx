@@ -1,10 +1,10 @@
 import basketStore from 'application/stores/basketStore';
 import { observer } from 'mobx-react-lite';
-import { BasketItem } from 'presentation/components/Basket-item/Basket-item';
+import { BasketItem } from 'presentation/components/Basket/components/BasketItem';
 import { Styled } from './styles';
 
-export const BasketList: React.FC = observer(() => {
-  const { TotalPrice, basketArray } = basketStore;
+export const Basket: React.FC = observer(() => {
+  const { totalPrice, basketArray } = basketStore;
 
   return (
     <Styled.Basket>
@@ -15,7 +15,7 @@ export const BasketList: React.FC = observer(() => {
       </Styled.Items>
       {basketArray.length === 0 
         ? <>Корзина пуста</>
-        : <Styled.Price>Total: {TotalPrice} $</Styled.Price>
+        : <Styled.Price>Total: {totalPrice} $</Styled.Price>
       }
     </Styled.Basket>
   );

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Badge, Button, Drawer, Layout } from "antd";
 import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { BasketList } from 'presentation/components/Basket-list/Basket-list';
 import { Styled } from './styles';
 import { observer } from 'mobx-react-lite';
 import basketStore from 'application/stores/basketStore';
+import { Basket } from 'presentation/components/Basket';
+import { Filter } from 'presentation/components/Filter';
 
 export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
           <Styled.Title>Ларёк</Styled.Title>
           <Styled.BtnContainer>
             <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
-            <Badge count={basketStore.TotalCount} >
+            <Badge count={basketStore.totalCount} >
               <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
             </Badge>
           </Styled.BtnContainer>
@@ -39,7 +40,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
             open={isOpen}
           >
             <Styled.Sider width={"100%"}>
-              Фильтров нет
+              <Filter toggleSider={toggleSider}/>
             </Styled.Sider>
           </Drawer>
           <Drawer
@@ -50,7 +51,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
             open={isOpenBasket}
           >
             <Styled.Sider width={"100%"}>
-              <BasketList />
+              <Basket />
             </Styled.Sider>
           </Drawer>
           <Styled.Content>

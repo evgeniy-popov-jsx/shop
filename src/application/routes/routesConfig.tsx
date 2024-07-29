@@ -1,17 +1,17 @@
 import { useRoutes } from 'react-router-dom';
-import { CardList } from 'presentation/components/Card-list/Card-list';
-import { ProductPage } from 'presentation/pages/Product-page/Product-page';
+import { Product } from 'presentation/pages/Product';
 import { ROUTES } from './routes';
+import { Products } from 'presentation/pages/Products';
 
 export const RouterConfig = () => {
 	const config = useRoutes([
 		{
 			path: '/',
-			element: <CardList />,
+			element: <Products />,
 		},
 		{
 			path: `${ROUTES.product}/:id`,
-			element: <ProductPage />,
+			element: <Product />,
 		},
 	]);
 

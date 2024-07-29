@@ -4,7 +4,7 @@ import { CloseSquareOutlined } from '@ant-design/icons';
 import { Product } from 'domain/model/product';
 import { observer } from 'mobx-react-lite';
 import basketStore from 'application/stores/basketStore';
-import { Counter } from '../Counter/Counter';
+import { Counter } from 'presentation/components/Counter/Counter';
 
 interface ItemProp {
   item: Product

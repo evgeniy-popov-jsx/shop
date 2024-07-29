@@ -1,44 +1,34 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx';
 import type { Product } from 'domain/model/product';
 
+interface BasketItem {
+  value: Product;
+  count: number;
+}
 class BasketStore {
-  @observable basket: Record<number, { value: Product, count: number }> = {};
-  @observable totalPrice: number = 0;
+  @observable basket: Record<number, BasketItem> = {};
 
   constructor () {
     makeAutoObservable(this);
   }
 
   @computed
-  get TotalCount() {
-    let totalCount = 0;
-
-    this.basketArray.forEach((item: { count: number; }) => {
-      totalCount += item.count;
-    });
-
-    return totalCount;
+  get totalCount() {
+    return this.basketArray.reduce((acc, current) => acc + current.count, 0);
   };
 
   @computed
-  get TotalPrice() {
-    let totalPrice = 0;
+  get totalPrice() {
+    const price = this.basketArray.reduce((acc, current) => {
+      return acc + (current.count * current.value.price);
+    }, 0);
 
-    Object.values(this.basket).forEach(item => {
-      totalPrice += item.count * item.value.price;
-    });
-
-    return totalPrice.toFixed(2);
+    return price.toFixed(2);
   };
 
   @computed
   get basketArray() {
     return Object.values(this.basket);
-  }
-
-  @computed
-  hasProduct(itemId: number): boolean {
-    return itemId in this.basket;
   }
   
   @action
@@ -88,7 +78,6 @@ class BasketStore {
 
     this.removeProduct(itemId);
   };
-
 }
 
 export default new BasketStore;

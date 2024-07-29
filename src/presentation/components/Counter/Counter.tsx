@@ -19,7 +19,7 @@ export const Counter: React.FC<CounterProp> = observer(({ decrement, increment, 
         size="small" 
         icon={<LeftOutlined />} 
         onClick={decrement} 
-        disabled={basketStore.TotalCount === 0}
+        disabled={basketStore.totalCount === 0}
       />
       <Styled.Count>{value}</Styled.Count>
       <Button 
