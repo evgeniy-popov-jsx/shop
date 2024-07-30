@@ -6,8 +6,8 @@ export const Authorisation = () => {
     <Styled.Container>
       <Styled.Paragraph>Authorisation</Styled.Paragraph>
       <Form />
-      <Styled.Button type="primary">Login</Styled.Button>
-      <Styled.Button type="primary">Register</Styled.Button>
+      <Styled.Button type="primary">Sign up</Styled.Button>
+      <Styled.Link to={'/'} type="link">Register</Styled.Link>
     </Styled.Container>
   );
 };

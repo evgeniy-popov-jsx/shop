@@ -17,7 +17,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
     <Styled.Container>
       <Styled.Layout>
         <Styled.Header>
-          <Styled.Title>Ларёк</Styled.Title>
+          <Styled.Title to={'/'} >Ларёк</Styled.Title>
           <Styled.BtnContainer>
             <Badge count={basketStore.totalCount} >
               <Button 

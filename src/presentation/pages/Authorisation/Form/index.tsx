@@ -6,11 +6,13 @@ export const Form = () => {
     <Styled.Form name="basic" >
       <Styled.Container>
         <Styled.Form.Item
+          name="email"
           rules={[{ required: true, message: 'Please input your email!' }]}
         >
           <Styled.Input placeholder='Email' />
         </Styled.Form.Item>
         <Styled.Form.Item
+          name="password"
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Styled.Input.Password placeholder='Password' />

@@ -1,4 +1,5 @@
 import { Layout as ANTLayout } from 'antd';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -24,8 +25,11 @@ const Header = styled(ANTLayout.Header)`
   background: #fff;
 `;
 
-const Title = styled.h1`
+const Title = styled(Link)`
+  font-size: 32px;
+  font-weight: 600;
   margin: 0;
+  color: black;
 
   @media (max-width: 335px) {
     display: none;
