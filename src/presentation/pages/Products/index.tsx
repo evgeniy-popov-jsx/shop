@@ -3,6 +3,7 @@ import { Styled } from './styles';
 import { CardList } from './components/CardList';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
+import { Filter } from 'presentation/components/Filter';
 
 export const Products = observer(() => {
   const {
@@ -16,6 +17,7 @@ export const Products = observer(() => {
 
   return (
     <Styled.Container>
+      <Filter />
       <CardList />
       <Styled.UploadButton
         type="primary"

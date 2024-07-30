@@ -1,14 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import { Styled } from './styles';
 import { useEffect, useState } from 'react';
-import { Radio, RadioChangeEvent } from 'antd';
+import { Button, Radio, RadioChangeEvent } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import productsStore from 'application/stores/productsStore';
 
-interface FilterProps {
-  toggleSider: () => void;
-}
-
-export const Filter: React.FC<FilterProps> = observer(({ toggleSider }) => {
+export const Filter = observer(() => {
   const { filters } = productsStore;
   const [value, setValue] = useState(''); 
 
@@ -20,17 +17,36 @@ export const Filter: React.FC<FilterProps> = observer(({ toggleSider }) => {
     setValue(e.target.value);
   };
 
-  const handleSetFilter = () => {
-    productsStore.setFilter(value);
-    toggleSider();
+  const handleSetFilter = (filter: string) => {
+    productsStore.setFilter(filter);
+  };
+
+  const handleClearFilter = () => {
+    setValue('');
+    productsStore.setFilter('');
   };
 
   return (
     <Styled.Container>
-      <Styled.Filters onChange={onChange} value={value}>
-        {filters.map(item => <Radio value={item} key={item}>{item}</Radio>)}
+      <Styled.Filters
+        onChange={onChange}
+        value={value}
+        buttonStyle="solid"
+      >
+        {filters.map(item => (
+          <Radio.Button 
+            onClick={()=>handleSetFilter(item)} 
+            value={item} 
+            key={item}
+          >
+            {item}
+          </Radio.Button>
+        ))}
       </Styled.Filters>
-      <Styled.SaveButton type="primary" onClick={handleSetFilter}>Сохранить</Styled.SaveButton>
+      <Button 
+        icon={<CloseOutlined />} 
+        onClick={handleClearFilter} 
+      />
     </Styled.Container>
   );
 });
