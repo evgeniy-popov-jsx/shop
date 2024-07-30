@@ -58,7 +58,11 @@ export const Product: React.FC = observer(() => {
               value={basketStore.basket[product.id]?.count || 0} 
             />
           ) : (
-            <Button onClick={()=>basketStore.addProduct(product)}>Buy {product.price} $</Button>
+            <Button 
+              onClick={()=>basketStore.addProduct(product)}
+            >
+              Buy {product.price} $
+            </Button>
           )}
         </Styled.DescContainer>
       </Styled.Content>

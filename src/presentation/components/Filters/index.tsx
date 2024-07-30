@@ -5,7 +5,7 @@ import { Button, Radio, RadioChangeEvent } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import productsStore from 'application/stores/productsStore';
 
-export const Filter = observer(() => {
+export const Filters = observer(() => {
   const { filters } = productsStore;
   const [value, setValue] = useState(''); 
 

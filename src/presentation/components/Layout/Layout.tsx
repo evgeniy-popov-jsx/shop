@@ -20,7 +20,11 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
           <Styled.Title>Ларёк</Styled.Title>
           <Styled.BtnContainer>
             <Badge count={basketStore.totalCount} >
-              <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
+              <Button 
+                type="primary" 
+                icon={<ShoppingCartOutlined />} 
+                onClick={toggleBasket}
+              />
             </Badge>
           </Styled.BtnContainer>
         </Styled.Header>
