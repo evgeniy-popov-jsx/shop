@@ -9,7 +9,7 @@ import productsStore from 'application/stores/productsStore';
 export const CardList = observer(() => {
   const { 
     products,
-    isProductsFetching 
+    isProductsFetching
   } = productsStore;
 
   if (isProductsFetching && products.length === 0) {
