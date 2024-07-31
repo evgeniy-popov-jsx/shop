@@ -8,11 +8,11 @@ import { Register } from 'presentation/pages/Register';
 export const RouterConfig = () => {
 	const config = useRoutes([
 		{
-			path: '/',
+			path: ROUTES.products,
 			element: <Products />,
 		},
 		{
-			path: `${ROUTES.product}/:id`,
+			path: `${ROUTES.products}/:id`,
 			element: <Product />,
 		},
 		{

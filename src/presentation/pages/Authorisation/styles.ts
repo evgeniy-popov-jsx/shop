@@ -28,4 +28,5 @@ export const Styled = {
   Button,
   Paragraph,
   Link,
+  Error
 };

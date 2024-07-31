@@ -20,7 +20,7 @@ export const CardList = observer(() => {
     <Styled.Products>
       {products.map((item) => {
         return (
-          <Link to={`${ROUTES.product}/${item.id}`} key={item.id}>
+          <Link to={`${ROUTES.products}/${item.id}`} key={item.id}>
             {item.rating.rate > 4 
               ? (
                 <Badge.Ribbon text="Bestseller">

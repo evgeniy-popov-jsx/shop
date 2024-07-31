@@ -1,12 +1,12 @@
 import { action, computed, makeAutoObservable, observable } from 'mobx';
-import type { Product } from 'domain/model/product';
+import type { Product, ProductId } from 'domain/model/product';
 
 interface BasketItem {
   value: Product;
   count: number;
 }
 class BasketStore {
-  @observable basket: Record<number, BasketItem> = {};
+  @observable basket: Record<ProductId, BasketItem> = {};
 
   constructor () {
     makeAutoObservable(this);
@@ -43,14 +43,14 @@ class BasketStore {
   };
   
   @action
-  removeProduct(itemId: number) {
+  removeProduct(itemId: ProductId) {
     const newBasket = { ...this.basket };
     delete newBasket[itemId];
     this.basket = newBasket;
   };
 
   @action
-  incrementProduct(itemId: number) {
+  incrementProduct(itemId: ProductId) {
     const item = this.basket[itemId];
     this.basket = {
       ...this.basket,
@@ -62,7 +62,7 @@ class BasketStore {
   };
 
   @action
-  decrementProduct(itemId: number) {
+  decrementProduct(itemId: ProductId) {
     const item = this.basket[itemId];
 
     if (item.count > 1) {

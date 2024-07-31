@@ -1,4 +1,4 @@
-import { Product } from 'domain/model/product';
+import { Product, ProductId } from 'domain/model/product';
 
 class ProductsApi {
   constructor(private baseurl: string) {}
@@ -8,17 +8,17 @@ class ProductsApi {
     return response.json();
   }
   
-  async getProductsFilter(filter: string): Promise<Product[]> {
-    const response = await fetch(`${this.baseurl}/products/category/${filter}`);
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    const response = await fetch(`${this.baseurl}/products/category/${category}`);
     return response.json();
   }
 
-  async getProduct(id: string): Promise<Product> {
+  async getProduct(id: ProductId): Promise<Product> {
     const response = await fetch(`${this.baseurl}/products/${id}`);
     return response.json();
   };
 
-  async getFilters(): Promise<string[]> {
+  async getCategories(): Promise<string[]> {
     const response = await fetch(`${this.baseurl}/products/categories`);
     return response.json();
   }

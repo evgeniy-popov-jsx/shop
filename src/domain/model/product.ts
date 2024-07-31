@@ -1,5 +1,7 @@
+export type ProductId = Brand<number, 'ProductId'>;
+
 export interface Product {
-  id: number;
+  id: ProductId;
   title: string;
   price: number;
   description: string;

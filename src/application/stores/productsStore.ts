@@ -4,8 +4,8 @@ import { action, computed, makeAutoObservable, observable, runInAction } from 'm
 
 class ProductsStore {
   @observable products: Product[] = [];
-  @observable filters: string[] = [];
-  @observable currentFilter: string | null = null;
+  @observable categories: string[] = [];
+  @observable selectedCategory: string | null = null;
   @observable maxProductsToViewCount = 20;
   @observable isProductsFetching = false;
   private limit: number = 5;
@@ -16,9 +16,6 @@ class ProductsStore {
 
   @computed
   get isLimitReached() {
-    if(this.currentFilter) {
-      return true;
-    }
     return this.products.length >= this.maxProductsToViewCount;
   }
 
@@ -28,8 +25,8 @@ class ProductsStore {
       this.isProductsFetching = true;
 
       let fetchedProducts;
-      if (this.currentFilter) {
-        fetchedProducts = await productsApi.getProductsFilter(this.currentFilter);
+      if (this.selectedCategory) {
+        fetchedProducts = await productsApi.getProductsByCategory(this.selectedCategory);
       } else {
         fetchedProducts = await productsApi.getProducts(this.limit);
       }
@@ -46,10 +43,14 @@ class ProductsStore {
   }
 
   @action
-  setFilter(filter: string | null) {
-    this.currentFilter = filter;
-    this.limit = 5;
+  changeCategory(category: string | null) {
+    this.setCategory(category);
     this.getProducts();
+  }
+
+  @action
+  setCategory(category: string | null) {
+    this.selectedCategory = category;
   }
 
   @action
@@ -59,11 +60,11 @@ class ProductsStore {
   };
 
   @action
-  async getFilters() {
+  async getCategories() {
     try {
-      const fetchedFilters = await productsApi.getFilters();
+      const data = await productsApi.getCategories();
       runInAction(() => {
-        this.filters = fetchedFilters;
+        this.categories = data;
       });
     } catch(e) {
       console.log(e);

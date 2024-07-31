@@ -1,9 +1,9 @@
 import productsStore from 'application/stores/productsStore';
 import { Styled } from './styles';
 import { CardList } from './components/CardList';
+import { Categories } from './components/Categories';
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import { Filters } from 'presentation/components/Filters';
 
 export const Products = observer(() => {
   const {
@@ -17,7 +17,7 @@ export const Products = observer(() => {
 
   return (
     <Styled.Container>
-      <Filters />
+      <Categories />
       <CardList />
       <Styled.UploadButton
         type="primary"

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Badge, Button, Drawer, Layout } from "antd";
+import { Badge, Button, Drawer, Layout, Tooltip } from "antd";
 import { Styled } from './styles';
 import { observer } from 'mobx-react-lite';
-import basketStore from 'application/stores/basketStore';
 import { Basket } from 'presentation/components/Basket';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { LogoutOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
+import authStore from 'application/stores/authStore';
+import basketStore from 'application/stores/basketStore';
 
 export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ children }) => {
   const [isOpenBasket, setIsOpenBasket] = useState(false);
@@ -19,13 +20,27 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ 
         <Styled.Header>
           <Styled.Title to={'/'} >Ларёк</Styled.Title>
           <Styled.BtnContainer>
-            <Badge count={basketStore.totalCount} >
-              <Button 
-                type="primary" 
-                icon={<ShoppingCartOutlined />} 
-                onClick={toggleBasket}
-              />
-            </Badge>
+            {authStore.user ? (
+              <>
+                <Tooltip title={authStore.user.email}>
+                  <Styled.Avatar shape="square" icon={<UserOutlined />} />
+                </Tooltip>
+                <Badge count={basketStore.totalCount} >
+                  <Button 
+                    type="primary" 
+                    icon={<ShoppingCartOutlined />} 
+                    onClick={toggleBasket}
+                  />
+                </Badge>
+                <Button 
+                  type="primary" 
+                  onClick={authStore.logout}
+                  icon={<LogoutOutlined />}
+                />
+              </>
+            ) : (
+              <Styled.Link to={'/authorisation'}>Login</Styled.Link>
+            )}
           </Styled.BtnContainer>
         </Styled.Header>
         <Layout>
