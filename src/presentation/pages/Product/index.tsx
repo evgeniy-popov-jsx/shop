@@ -7,16 +7,17 @@ import { observer } from 'mobx-react-lite';
 import { Styled } from './styles';
 import productStore from 'application/stores/productStore';
 import basketStore from 'application/stores/basketStore';
+import type { ProductId } from 'domain/model/product';
 
 export const Product: React.FC = observer(() => {
   const navigate = useNavigate();
-  const  { id }  = useParams();
+  const  { id }  = useParams<{id: string}>();
   const { product, isLoading } = productStore;
   const { basket } = basketStore;
 
-  useEffect(()=>{
+  useEffect(() => {
     if (id) {
-      productStore.getProduct(id);
+      productStore.getProduct(Number(id) as ProductId);
     }
   }, []);
 
