@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Badge, Button, Drawer, Layout } from "antd";
-import { MenuOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { BasketList } from 'presentation/components/Basket-list/Basket-list';
+import { Badge, Button, Drawer, Layout, Tooltip } from "antd";
 import { Styled } from './styles';
+import { observer } from 'mobx-react-lite';
+import { Basket } from 'presentation/components/Basket';
+import { LogoutOutlined, ShoppingCartOutlined, UserOutlined } from '@ant-design/icons';
+import authStore from 'application/stores/authStore';
+import basketStore from 'application/stores/basketStore';
 
-export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const LayoutPage: React.FC<{ children : React.ReactNode }> = observer(({ children }) => {
   const [isOpenBasket, setIsOpenBasket] = useState(false);
 
-  const toggleSider = () => {
-    setIsOpen(!isOpen);
-  };
   const toggleBasket = () => {
     setIsOpenBasket(!isOpenBasket);
   };
@@ -19,26 +18,32 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children 
     <Styled.Container>
       <Styled.Layout>
         <Styled.Header>
-          <Styled.Title>Ларёк</Styled.Title>
+          <Styled.Title to={'/'} >Ларёк</Styled.Title>
           <Styled.BtnContainer>
-            <Button type="primary" icon={<MenuOutlined />} onClick={toggleSider}>Фильтр</Button>
-            <Badge count={5} >
-              <Button type="primary" icon={<ShoppingCartOutlined />} onClick={toggleBasket} />
-            </Badge>
+            {authStore.user ? (
+              <>
+                <Tooltip title={authStore.user.email}>
+                  <Styled.Avatar shape="square" icon={<UserOutlined />} />
+                </Tooltip>
+                <Badge count={basketStore.totalCount} >
+                  <Button 
+                    type="primary" 
+                    icon={<ShoppingCartOutlined />} 
+                    onClick={toggleBasket}
+                  />
+                </Badge>
+                <Button 
+                  type="primary" 
+                  onClick={authStore.logout}
+                  icon={<LogoutOutlined />}
+                />
+              </>
+            ) : (
+              <Styled.Link to={'/authorisation'}>Login</Styled.Link>
+            )}
           </Styled.BtnContainer>
         </Styled.Header>
         <Layout>
-          <Drawer
-            title="Фильтры"
-            placement="left"
-            closable={true}
-            onClose={toggleSider}
-            open={isOpen}
-          >
-            <Styled.Sider width={"100%"}>
-              Фильтров нет
-            </Styled.Sider>
-          </Drawer>
           <Drawer
             title="Корзина"
             placement="right"
@@ -47,7 +52,7 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children 
             open={isOpenBasket}
           >
             <Styled.Sider width={"100%"}>
-              <BasketList />
+              <Basket />
             </Styled.Sider>
           </Drawer>
           <Styled.Content>
@@ -58,4 +63,4 @@ export const LayoutPage: React.FC<{ children : React.ReactNode }> = ({ children 
       </Styled.Layout>
     </Styled.Container>
   );
-};
+});

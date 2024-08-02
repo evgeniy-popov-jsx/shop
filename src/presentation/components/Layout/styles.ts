@@ -1,4 +1,5 @@
-import { Layout as ANTLayout } from 'antd';
+import { Layout as ANTLayout, Avatar as ANTAvatar } from 'antd';
+import { Link as RLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -24,8 +25,11 @@ const Header = styled(ANTLayout.Header)`
   background: #fff;
 `;
 
-const Title = styled.h1`
+const Title = styled(RLink)`
+  font-size: 32px;
+  font-weight: 600;
   margin: 0;
+  color: black;
 
   @media (max-width: 335px) {
     display: none;
@@ -35,7 +39,7 @@ const Title = styled.h1`
 const BtnContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 12px;
 `;
 
 const Content = styled(ANTLayout.Content)`
@@ -53,6 +57,23 @@ const Footer = styled(ANTLayout.Footer)`
   background-color: #fff;
 `;
 
+const Link = styled(RLink)`
+
+`;
+
+const Paragraph = styled.p`
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: grey;
+`;
+const Avatar = styled(ANTAvatar)`
+  background: #1677ff;
+  cursor: pointer;
+`;
+
 export const Styled = {
   Container,
   Layout,
@@ -62,4 +83,7 @@ export const Styled = {
   Content,
   Sider,
   Footer,
+  Link,
+  Paragraph,
+  Avatar,
 };
