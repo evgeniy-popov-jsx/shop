@@ -1,4 +1,5 @@
 import { StarFilled as ANTStarFilled } from '@ant-design/icons';
+import { Spin } from 'antd';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -99,6 +100,12 @@ const StarFilled = styled(ANTStarFilled)`
   color: rgb(255, 166, 0);
 `;
 
+const Loader = styled(Spin)`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+`;
+
 export const Styled = {
   Container,
   ImgContainer,
@@ -111,4 +118,5 @@ export const Styled = {
   Description,
   Rating,
   StarFilled,
+  Loader
 };

@@ -1,16 +1,27 @@
 import { useRoutes } from 'react-router-dom';
-import { CardList } from 'presentation/components/Card-list/Card-list';
-import { ProductPage } from 'presentation/pages/Product-page/Product-page';
+import { Product } from 'presentation/pages/Product';
+import { ROUTES } from './routes';
+import { Products } from 'presentation/pages/Products';
+import { Authorisation } from 'presentation/pages/Authorisation';
+import { Register } from 'presentation/pages/Register';
 
 export const RouterConfig = () => {
 	const config = useRoutes([
 		{
-			path: '/',
-			element: <CardList />,
+			path: ROUTES.products,
+			element: <Products />,
 		},
 		{
-			path: '/product/:id',
-			element: <ProductPage />,
+			path: `${ROUTES.products}/:id`,
+			element: <Product />,
+		},
+		{
+			path: `${ROUTES.authorisation}`,
+			element: <Authorisation />,
+		},
+		{
+			path: `${ROUTES.register}`,
+			element: <Register />,
 		},
 	]);
 
