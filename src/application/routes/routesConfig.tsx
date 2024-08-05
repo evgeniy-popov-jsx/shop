@@ -1,4 +1,4 @@
-import { useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
 import { Product } from 'presentation/pages/Product';
 import { ROUTES } from './routes';
 import { Products } from 'presentation/pages/Products';
@@ -7,6 +7,10 @@ import { Register } from 'presentation/pages/Register';
 
 export const RouterConfig = () => {
 	const config = useRoutes([
+    {
+      path: ROUTES.home,
+      element: <Navigate to="/products" />,
+    },
 		{
 			path: ROUTES.products,
 			element: <Products />,
@@ -16,11 +20,11 @@ export const RouterConfig = () => {
 			element: <Product />,
 		},
 		{
-			path: `${ROUTES.authorisation}`,
+			path: ROUTES.authorisation,
 			element: <Authorisation />,
 		},
 		{
-			path: `${ROUTES.register}`,
+			path: ROUTES.register,
 			element: <Register />,
 		},
 	]);
