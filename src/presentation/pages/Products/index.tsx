@@ -6,10 +6,6 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 
 export const Products = observer(() => {
-  const {
-    isLimitReached,
-    isProductsFetching
-  } = productsStore;
 
   useEffect(() => {
     productsStore.getProducts();
@@ -19,13 +15,6 @@ export const Products = observer(() => {
     <Styled.Container>
       <Categories />
       <CardList />
-      <Styled.UploadButton
-        type="primary"
-        icon={<p>Еще</p>}
-        onClick={productsStore.fetchNext}
-        loading={isProductsFetching}
-        disabled={isLimitReached}
-      />
     </Styled.Container>
   )
 });

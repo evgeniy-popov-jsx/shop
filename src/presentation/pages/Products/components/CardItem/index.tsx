@@ -3,7 +3,7 @@ import Meta from 'antd/es/card/Meta';
 import { Product } from 'domain/model/product';
 import { Styled } from './styles';
 
-export const CardItem: React.FC<{ item: Product }> = ({ item }) => {
+export const CardItem: React.FC<{ data: Product }> = ({ data }) => {
   const {
     image, 
     title, 
@@ -11,7 +11,7 @@ export const CardItem: React.FC<{ item: Product }> = ({ item }) => {
     price, 
     rating,
     description
-  } = item;
+  } = data;
 
   return (
     <Styled.Card hoverable cover={<Styled.Img alt={title} src={image} />}>

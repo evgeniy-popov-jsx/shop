@@ -1,4 +1,5 @@
 import { Button, Spin } from 'antd';
+import { List as VirtualList} from 'react-virtualized';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -8,15 +9,7 @@ const Container = styled.div`
 `;
 
 const Products = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-
-  @media (max-width: 640px) {
-    justify-content: center;
-  }
+ 
 `;
 
 const UploadButton = styled(Button)`
@@ -30,9 +23,18 @@ const Loader = styled(Spin)`
   left: 50%;
 `;
 
+const List = styled(VirtualList)`
+  border: 1px solid #e0e0e0;
+`;
+const Row = styled.div`
+
+`;
+
 export const Styled = {
   Container,
   Products,
   UploadButton,
-  Loader
+  Loader,
+  List,
+  Row
 };
